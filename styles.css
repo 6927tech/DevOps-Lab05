@@ -1,0 +1,358 @@
+:root {
+  color-scheme: light;
+  font-family: "Kanit", "Tahoma", sans-serif;
+  color: #17243b;
+  background: #f3f5f8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 760px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% -18%, #ffffff 0, #f3f5f8 58%),
+    #f3f5f8;
+}
+
+button {
+  font: inherit;
+}
+
+.page {
+  width: min(1500px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 48px 0 36px;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 8px 26px;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: #4774d9;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+h1 {
+  margin: 0;
+  color: #17243b;
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: 9px 0 0;
+  color: #718096;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.restart-button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 18px;
+  border: 1px solid #dfe5ef;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 3px 10px rgb(26 42 71 / 4%);
+  color: #34445f;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.restart-button span {
+  color: #4774d9;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.restart-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: #b7c8ec;
+  box-shadow: 0 6px 16px rgb(26 42 71 / 8%);
+}
+
+.restart-button:focus-visible {
+  outline: 3px solid rgb(71 116 217 / 28%);
+  outline-offset: 2px;
+}
+
+.restart-button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.game-card {
+  overflow: hidden;
+  border: 1px solid #e6eaf0;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 18px 55px rgb(37 52 78 / 7%), 0 2px 6px rgb(37 52 78 / 3%);
+}
+
+.game-toolbar {
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 26px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.progress-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #66748a;
+  font-size: 14px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4b83e6;
+  box-shadow: 0 0 0 4px #edf3ff;
+}
+
+.game-card.is-complete .status-dot {
+  background: #24a475;
+  box-shadow: 0 0 0 4px #e6f7f0;
+}
+
+.piece-count {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  color: #8a96a8;
+  font-size: 13px;
+}
+
+.game-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.elapsed-time {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #66748a;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-icon {
+  color: #8a96a8;
+  font-size: 18px;
+}
+
+.piece-count #placed-count {
+  color: #263a5a;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.count-divider {
+  color: #c4ccd7;
+}
+
+.board-wrap {
+  padding: 18px 20px 14px;
+  background:
+    radial-gradient(ellipse at 25% 35%, rgb(255 255 255 / 90%), transparent 58%),
+    #f8f9fb;
+}
+
+.puzzle-board {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.board-label {
+  fill: #66748a;
+  font-family: "Kanit", "Tahoma", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.board-sublabel {
+  fill: #9aa5b5;
+  font-family: "Kanit", "Tahoma", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.target-slot {
+  fill: #f7f8fb;
+  stroke: #dce2eb;
+  stroke-width: 1.5;
+  pointer-events: none;
+}
+
+.piece {
+  cursor: grab;
+  touch-action: none;
+  filter: drop-shadow(0 3px 3px rgb(26 42 71 / 12%));
+  transition: filter 120ms ease;
+}
+
+.piece:hover {
+  filter: drop-shadow(0 7px 7px rgb(26 42 71 / 21%));
+}
+
+.piece.is-dragging {
+  cursor: grabbing;
+  filter: drop-shadow(0 10px 11px rgb(26 42 71 / 25%));
+}
+
+.piece.is-placed {
+  cursor: default;
+  filter: drop-shadow(0 1px 2px rgb(26 42 71 / 12%));
+}
+
+.piece-outline {
+  fill: none;
+  stroke: rgb(255 255 255 / 90%);
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  vector-effect: non-scaling-stroke;
+}
+
+.game-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  padding: 13px 26px 18px;
+  border-top: 1px solid #edf0f4;
+  color: #8995a7;
+  font-size: 12px;
+}
+
+.footer-hint {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.footer-hint p {
+  margin: 0;
+}
+
+.sound-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid #e1e7f0;
+  border-radius: 9px;
+  background: #fff;
+  color: #52627b;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.sound-button span:first-child {
+  color: #4774d9;
+  font-size: 16px;
+}
+
+.sound-button:hover:not(:disabled) {
+  border-color: #b7c8ec;
+  background: #f7f9ff;
+}
+
+.sound-button:focus-visible {
+  outline: 3px solid rgb(71 116 217 / 28%);
+  outline-offset: 2px;
+}
+
+.sound-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.hint-icon {
+  color: #e9ae42;
+  font-size: 15px;
+}
+
+noscript {
+  display: block;
+  margin-top: 14px;
+  color: #a53d3d;
+}
+
+@media (max-width: 900px) {
+  .page {
+    width: calc(100% - 32px);
+    padding-top: 28px;
+  }
+
+  .page-header {
+    margin: 0 2px 18px;
+  }
+
+  .board-wrap {
+    padding: 12px 10px 8px;
+  }
+
+  .game-toolbar {
+    min-height: 58px;
+    padding: 0 16px;
+  }
+
+  .game-stats {
+    gap: 14px;
+  }
+
+  .game-footer {
+    padding: 12px 16px 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .game-toolbar {
+    padding: 0 12px;
+  }
+
+  .game-stats {
+    gap: 10px;
+  }
+}

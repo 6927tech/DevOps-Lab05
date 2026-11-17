@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f5f8">
+    <title>เกมต่อจิ๊กซอว์รถยนต์</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">JIGSAW PUZZLE</p>
+          <h1>ต่อภาพรถยนต์</h1>
+          <p class="subtitle">ลากชิ้นส่วนไปวางให้ตรงตำแหน่ง เพื่อประกอบภาพให้สมบูรณ์</p>
+        </div>
+        <button class="restart-button" id="restart-button" type="button" disabled>
+          <span aria-hidden="true">↻</span>
+          เริ่มเกมใหม่
+        </button>
+      </header>
+
+      <section class="game-card" aria-label="เกมต่อจิ๊กซอว์">
+        <div class="game-toolbar">
+          <div class="progress-label">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="game-status" role="status" aria-live="polite">กำลังโหลดเกม...</span>
+          </div>
+          <div class="game-stats">
+            <div class="elapsed-time" aria-label="เวลาที่ใช้เล่น">
+              <span class="timer-icon" aria-hidden="true">◷</span>
+              <span id="elapsed-time">00:00</span>
+            </div>
+            <div class="piece-count" aria-label="ความคืบหน้า">
+              <span id="placed-count">0</span>
+              <span class="count-divider">/</span>
+              <span>20 ชิ้น</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="board-wrap">
+          <svg
+            id="puzzle-board"
+            class="puzzle-board"
+            viewBox="0 0 1560 680"
+            role="img"
+            aria-label="พื้นที่เล่นจิ๊กซอว์ ลากชิ้นส่วนจากถาดด้านขวามาวางในพื้นที่ต่อภาพด้านซ้าย"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs id="board-defs"></defs>
+            <g id="board-art"></g>
+            <g id="piece-layer"></g>
+          </svg>
+        </div>
+
+        <footer class="game-footer">
+          <div class="footer-hint">
+            <span class="hint-icon" aria-hidden="true">✦</span>
+            <p>เคล็ดลับ: วางชิ้นส่วนใกล้ตำแหน่งที่ถูกต้อง แล้วชิ้นส่วนจะเข้าที่เอง</p>
+          </div>
+          <button
+            class="sound-button"
+            id="sound-toggle"
+            type="button"
+            aria-pressed="true"
+            title="เพลงจะเริ่มเมื่อเริ่มลากชิ้นส่วน"
+          >
+            <span aria-hidden="true">♫</span>
+            <span id="sound-label">เพลงเปิด</span>
+          </button>
+        </footer>
+      </section>
+      <noscript>เกมนี้ต้องเปิดใช้งาน JavaScript ใน browser</noscript>
+    </main>
+  </body>
+</html>
